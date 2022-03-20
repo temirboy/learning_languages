@@ -6,7 +6,7 @@ from users.forms import UserCreationForm
 
 
 class Register(View):
-    template_name = 'register.html'
+    template_name = 'registration/register.html'
 
     def get(self, request):
         content = {
