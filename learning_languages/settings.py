@@ -33,6 +33,7 @@ INSTALLED_APPS = [
 
     'users',
     'video_youtube',
+    'languages',
 ]
 
 MIDDLEWARE = [
