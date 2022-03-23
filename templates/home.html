@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content_header %}
+    {% if user.is_authenticated %}
+        <!-- Menu -->
+        <li class="nav-item navbar-nav ms-auto">
+            <a class="btn btn-ghost-dark me-2" href="{% url 'logout' %}">Add video</a>
+        </li>
+        <!-- End Menu -->
+
+        <!-- Log out -->
+        <li class="nav-item navbar-nav ms-auto">
+            <a class="btn btn-ghost-dark me-2" href="{% url 'logout' %}">Log out</a>
+        </li>
+        <!-- End Log out -->
+    {% else %}
+
+        <!-- Log in -->
+        <li class="nav-item navbar-nav ms-auto">
+            <a class="btn btn-ghost-dark me-md-2" href="{% url 'login' %}">Log in</a>
+        </li>
+        <!-- End Log in -->
+
+        <!-- Sign up -->
+        <li class="nav-item navbar-nav ms-auto">
+            <a class="btn btn-dark d-lg-inline-block" href="{% url 'register' %}">Sign up</a>
+        </li>
+        <!-- End Sign up -->
+
+    {% endif %}
+{% endblock %}
