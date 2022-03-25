@@ -2,6 +2,7 @@ from django.db import models
 from users.models import User
 from languages.models import Languages
 
+
 class VideoUrl(models.Model):
     """
 
@@ -58,4 +59,3 @@ class LearnedWords(models.Model):
 
     class Meta:
         db_table = 'learned_words'
-
