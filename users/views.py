@@ -22,7 +22,7 @@ class Register(View):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('home')
+            return redirect('../../languages/add_language/')
         content = {
             'form': form
         }

@@ -2,11 +2,20 @@
 
 {% block content_header %}
     {% if user.is_authenticated %}
-    text_test34
+        text_test6666
+        br
+        User {{ user.id }}
         <br>
-        {{ video.name }}
-        {{ video.url }}
-        {{ video.user }}
+
+        {% if form.errors %}
+            <p>{{ form.errors.error }}</p>
+        {% endif %}
+
+        <form method="post" class="jkjkl">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
 
 
     {% else %}

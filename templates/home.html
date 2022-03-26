@@ -2,11 +2,14 @@
 
 {% block content_header %}
     {% if user.is_authenticated %}
-        <!-- Menu -->
+        <!-- Menu
         <li class="nav-item navbar-nav ms-auto">
-            <a class="btn btn-ghost-dark me-2" href="{% url 'add_video_youtube1' %}">Add video</a>
+            <a class="btn btn-ghost-dark me-2" href="{% url 'add_video_youtube' %}">Add video</a>
         </li>
-        <!-- End Menu -->
+        End Menu -->
+        <li class="nav-item navbar-nav ms-auto">
+            <a class="btn btn-ghost-dark me-2" href="{% url 'add_video_youtube' %}">Выбрать язык</a>
+        </li>
 
         <!-- Log out -->
         <li class="nav-item navbar-nav ms-auto">

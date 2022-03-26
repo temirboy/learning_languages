@@ -2,8 +2,13 @@
 
 {% block content_header %}
     {% if user.is_authenticated %}
-    text_test11
-        <a class="btn btn-ghost-dark me-md-2" href="{% url 'add_video_youtube' %}">VideoYoutubeView</a>
+    text_test34
+        <br>
+        {{ video.name }}
+        {{ video.url }}
+        {{ video.user }}
+
+
     {% else %}
 
         <!-- Log in -->

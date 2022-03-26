@@ -2,8 +2,23 @@
 
 {% block content_header %}
     {% if user.is_authenticated %}
-    text_test11
-        <a class="btn btn-ghost-dark me-md-2" href="{% url 'add_video_youtube' %}">VideoYoutubeView</a>
+        add_lang
+        <br>
+        User {{ user.id }}
+        <br>
+
+        {% if form.errors %}
+            <p>{{ form.errors.error }}</p>
+
+        {% endif %}
+
+        <form method="POST" class="post-d">
+            {{ form.name }}
+            {% csrf_token %}
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+
+
     {% else %}
 
         <!-- Log in -->
