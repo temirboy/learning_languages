@@ -16,19 +16,22 @@ def select_language(request):
 
 
 def add_language(request):
-    if request.method == 'POST':
-        form = AddLanguage(request.POST)
-        if form.is_valid():
-            try:
-                language = form.save(commit=False)
-                language.name = language.name
-                language.user_id = request.user.id
-                language.save()
-            except Exception:
-                pass
+    form = AddLanguage(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        # form = AddLanguage(request.POST)
+        # if form.is_valid():
+        try:
+            language = form.save(commit=False)
+            language.name = language.name
+            language.user_id = request.user.id
+            language.save()
+            print(request.POST)
+            print(form.cleaned_data)
+        except Exception:
+            pass
 
-    else:
-        form = AddLanguage()
+    # else:
+    # form = AddLanguage()
     return render(request, 'languages/add_language.html', {'form': form})
 
 

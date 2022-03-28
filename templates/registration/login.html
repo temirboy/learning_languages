@@ -1,15 +1,62 @@
 {% extends '../base.html' %}
 
 {% block content_main %}
-    {% if form.errors %}
-        <p>{{ form.errors.error }}</p>
-    {% endif %}
 
-    <form action="{% url 'login' %}" method="post">
-        {{ form }}
-        {% csrf_token %}
-        <button type="submit" class="btn btn-dark d-lg-inline-block">submit</button>
-    </form>
+    <body class="login" data-admin-utc-offset="0">
+    <!-- Container -->
+    <div id="container">
+        <!-- Header -->
+        <div id="header">
+            <div id="branding">
+                <h1 id="site-name"><a href="/">Вход</a></h1>
+            </div>
+        </div>
+        <!-- END Header -->
+        <div class="main" id="main">
+            <div class="content">
+                <!-- Content -->
+                <div id="content" class="colM">
 
-    <a href="{% url 'password_reset' %}">Forgot password</a>
+                    <div id="content-main">
+                        <form action="{% url 'login' %}" method="post">
+                            {% csrf_token %}
+
+                            <div class="form-row">
+                                <label for="id_username" class="required">Имя пользователя:</label>
+                                <input type="text" name="username" autofocus="" autocapitalize="none"
+                                       autocomplete="username" maxlength="150" required="" id="id_username">
+                            </div>
+                            {% if form.errors %}
+                                {{ form.username.errors }}
+                            {% endif %}
+
+                            <div class="form-row">
+                                <label for="id_password" class="required">Пароль:</label>
+                                <input type="password" name="password" autocomplete="current-password"
+                                       required="" id="id_password">
+                                <input type="hidden" name="next" value="/">
+                            </div>
+                            {% if form.errors %}
+                                {{ form.password.errors }}
+                            {% endif %}
+
+                            <div class="form-row">
+                                <a href="{% url 'password_reset' %}">Забыли пароль?</a>
+                            </div>
+
+                            <div class="submit-row">
+                                <input type="submit" value="Войти">
+                            </div>
+
+                        </form>
+                    </div>
+                    <br class="clear">
+                </div>
+                <!-- END Content -->
+                <div id="footer"></div>
+            </div>
+        </div>
+    </div>
+    <!-- END Container -->
+    </body>
 {% endblock %}
