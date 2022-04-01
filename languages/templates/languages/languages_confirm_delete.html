@@ -1,0 +1,44 @@
+{% extends 'home.html' %}
+
+{% block content_main %}
+    {% if user.is_authenticated %}
+        <body class="login" data-admin-utc-offset="0">
+        <!-- Container -->
+        <div id="container">
+            <!-- Header -->
+            <div id="header">
+                <div id="branding">
+                    <h1 id="site-name"><a href="/">Удалить язык</a></h1>
+                </div>
+            </div>
+            <!-- END Header -->
+            <div class="main" id="main">
+                <div class="content">
+                    <!-- Content -->
+                    <div id="content" class="colM">
+
+                        <div id="content-main">
+                            <form class="d-flex" method="post">
+                                {% csrf_token %}
+
+                                <div class="form-row">
+                                    {{ form }}
+                                </div>
+
+                                <div class="submit-row">
+                                    <input type="submit" value="Удалить">
+                                </div>
+
+                            </form>
+                        </div>
+                        <br class="clear">
+                    </div>
+                    <!-- END Content -->
+                    <div id="footer"></div>
+                </div>
+            </div>
+        </div>
+        <!-- END Container -->
+        </body>
+    {% endif %}
+{% endblock %}

@@ -10,6 +10,7 @@ class Languages(models.Model):
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=10, choices=LANGUAGES, default='en')
+    default = models.BooleanField(default=True)
 
     class Meta:
         db_table = 'languages'

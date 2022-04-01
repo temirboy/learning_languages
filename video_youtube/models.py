@@ -9,8 +9,8 @@ class VideoUrl(models.Model):
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     language = models.ForeignKey(Languages, on_delete=models.CASCADE)
-    url = models.URLField('Ссылка на youtube видео')
-    name = models.TextField('Название видео')
+    name = models.CharField('Название видео:', max_length=100)
+    url = models.URLField('Ссылка на youtube видео:')
 
     class Meta:
         db_table = 'video_url'
@@ -38,8 +38,8 @@ class NewWorlds(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     language = models.ForeignKey(Languages, on_delete=models.CASCADE)
     video_time = models.ForeignKey(VideoTime, on_delete=models.CASCADE)
-    text_en = models.TextField()
-    text_ru = models.TextField()
+    text_en = models.CharField('Новое слово:', max_length=200)
+    text_ru = models.CharField('Перевод:', max_length=200)
 
     class Meta:
         db_table = 'new_worlds'
@@ -52,8 +52,8 @@ class LearnedWords(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     language = models.ForeignKey(Languages, on_delete=models.CASCADE)
     video_time = models.ForeignKey(VideoTime, on_delete=models.CASCADE)
-    text_en = models.TextField()
-    text_ru = models.TextField()
+    text_en = models.CharField('Новое слово:', max_length=200)
+    text_ru = models.CharField('Перевод:', max_length=200)
     phrase = models.BooleanField('false-слово, true-фраза')
     video = models.BooleanField('false-изучал через текст, true-изучал через видео')
 

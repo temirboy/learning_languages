@@ -1,4 +1,4 @@
-{% extends '../base.html' %}
+{% extends 'home.html' %}
 
 {% block content_main %}
 
@@ -17,28 +17,28 @@
                 <!-- Content -->
                 <div id="content" class="colM">
 
+                    {% if form.non_field_errors %}
+                        {% for error in form.non_field_errors %}
+                            <p class="errornote">
+                                {{ error }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+
                     <div id="content-main">
                         <form action="{% url 'login' %}" method="post">
                             {% csrf_token %}
 
                             <div class="form-row">
-                                <label for="id_username" class="required">Имя пользователя:</label>
-                                <input type="text" name="username" autofocus="" autocapitalize="none"
-                                       autocomplete="username" maxlength="150" required="" id="id_username">
-                            </div>
-                            {% if form.errors %}
                                 {{ form.username.errors }}
-                            {% endif %}
+                                {{ form.username.label_tag }} {{ form.username }}
+                            </div>
 
                             <div class="form-row">
-                                <label for="id_password" class="required">Пароль:</label>
-                                <input type="password" name="password" autocomplete="current-password"
-                                       required="" id="id_password">
-                                <input type="hidden" name="next" value="/">
-                            </div>
-                            {% if form.errors %}
                                 {{ form.password.errors }}
-                            {% endif %}
+                                {{ form.password.label_tag }} {{ form.password }}
+                                <input type="hidden" name="next" value="{{ next }}">
+                            </div>
 
                             <div class="form-row">
                                 <a href="{% url 'password_reset' %}">Забыли пароль?</a>
