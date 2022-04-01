@@ -3,13 +3,13 @@ class LanguageMiddleware:
         self._get_response = get_response
 
     def __call__(self, request):
-        print("111111")
+        #print("111111")
 
 
         response = self._get_response(request)
         var = request.session.get('lang', 'asd')
-        print(var)
-        print("222222")
+        #print(var)
+        #print("222222")
         #request.session['username1'] = 'qwe'
         #request.session.modified = True
         #var = request.session.get('username1', 'qwe')

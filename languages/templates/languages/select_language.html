@@ -2,25 +2,10 @@
 
 {% block content_main %}
     {% if user.is_authenticated %}
-        select
-        {{ languages_list.id }}
-        {{ languages_list.name }}
-        <br>
-
-
-    {% else %}
-
-        <!-- Log in -->
-        <li class="nav-item navbar-nav ms-auto">
-            <a class="btn btn-ghost-dark me-md-2" href="{% url 'VideoYoutubeView' %}">VideoYoutubeView</a>
-        </li>
-        <!-- End Log in -->
-
-        <!-- Sign up -->
-        <li class="nav-item navbar-nav ms-auto">
-            <a class="btn btn-dark d-lg-inline-block" href="{% url 'register' %}">Sign up</a>
-        </li>
-        <!-- End Sign up -->
-
+        <ul class="list-group">
+            {% for lang in object_list %}
+                <a href="{% url 'list_video' %} class="list-group-item"">{{ lang.name }}</a>
+            {% endfor %}
+        </ul>
     {% endif %}
 {% endblock %}

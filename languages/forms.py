@@ -5,7 +5,7 @@ from .models import Languages
 from django.conf.global_settings import LANGUAGES
 
 
-class AddLanguage(forms.ModelForm):
+class AddLanguageForm(forms.ModelForm):
     name = forms.ChoiceField(
         choices=LANGUAGES,
         widget=forms.Select(attrs=None, choices=LANGUAGES),

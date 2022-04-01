@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
 from video_youtube.models import VideoUrl
 from .forms import AddVideoYoutube
+from languages.models import Languages
 
 from django.shortcuts import get_object_or_404, get_list_or_404
 
@@ -43,7 +44,7 @@ def get_3(request):
     language = request.session.get('language', None)
     if language == None:
         return redirect('../../languages/select_language/')
-    vid1 = get_list_or_404(VideoUrl, user_id=request.user.id)
+    vid1 = get_list_or_404(VideoUrl, user_id=request.user.id, language_id=language)
     print(vid1)
     return render(request, 'video_youtube/list_video.html', {'video': vid1})
 
@@ -57,3 +58,19 @@ def add_video_youtube(request):
 
 # def add_video_youtube_view(request):
 #    return render(request, 'videourl_form.html')
+
+
+class VideoYoutubeListView(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('login')
+    model = VideoUrl
+    template_name = 'video_youtube/videourl_list.html'
+    #quryset = Languages.objects.filter(user_id=self.request.user.id)
+
+    # request.session['username1'] = 'qwe'
+    # request.session.modified = True
+    def get_queryset(self):
+        video_list = VideoUrl.objects.filter(
+            user_id=self.request.user.id,
+            language_id=1
+        )
+        return video_list

@@ -10,6 +10,7 @@ urlpatterns = [
     path('<int:pk>/', views.get_language),
     # path('list/<int:pk>/', views.get_2),
     path('language_default/', views.my_view, name='language_default'),
-    path('select_language/', views.select_language, name='select_language'),
+    path('select_language/', views.LanguagesListView.as_view(), name='select_language'),
+    #path('select_language/', views.select_language, name='select_language'),
 
 ]

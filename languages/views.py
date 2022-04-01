@@ -7,14 +7,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 import users.admin
 from languages.models import Languages
-from .forms import AddLanguage
+from .forms import AddLanguageForm
 
 
 def select_language(request):
     if request.method == 'POST':
-        form = Languages(request.POST)
+        form = AddLanguageForm(request.POST)
+        print("fffffffffffff222222222222222")
     else:
-        form = Languages()
+        form = AddLanguageForm().name
+        print("fffffffffffff1111111111111111")
     return render(request, 'languages/select_language.html', {'form': form})
 
 
@@ -50,20 +52,21 @@ class DeleteLanguage(LoginRequiredMixin, DeleteView):
         return get_object_or_404(Languages, user_id=user_id_)
 
 
-
 def get_language(reguest, pk: int):
     languages_list = get_list_or_404(Languages, user_id=pk)
     return render(reguest, 'languages/select_language.html', {'languages_list': languages_list})
 
 
-class LinksView(ListView):
+class LanguagesListView(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('login')
     model = Languages
     template_name = 'languages/select_language.html'
-    context_object_name = 'links'
+    #quryset = Languages.objects.filter(user_id=self.request.user.id)
 
+    # request.session['username1'] = 'qwe'
+    # request.session.modified = True
     def get_queryset(self):
-        return Languages.objects.filter(user=10)
-
+        return Languages.objects.filter(user_id=self.request.user.id)
 
 def language_default(request):
     languages_list = Languages.objects.filter(user=request.user)
@@ -77,12 +80,12 @@ def my_view(request):
         # form = Languages()
         print(type(username))
         vid = get_object_or_404(Languages, user_id=username)
-        #var = request.session.get('lang', 'asd')
+        # var = request.session.get('lang', 'asd')
         request.session['lang'] = vid.name
         request.session.modified = True
-        #print(request.POST)
+        # print(request.POST)
         # print(form.cleaned_data)
-        #print(username)
-        #print(vid)
+        # print(username)
+        # print(vid)
 
     return render(request, 'languages/select_language.html', {'languages_list': vid})
