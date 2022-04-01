@@ -4,7 +4,7 @@ from . import models
 
 @admin.register(models.VideoUrl)
 class LanguagesAdmin(admin.ModelAdmin):
-    list_display = ['user', 'language', 'url', 'name']
+    list_display = ['language', 'url', 'name']
 
 
 @admin.register(models.VideoTime)

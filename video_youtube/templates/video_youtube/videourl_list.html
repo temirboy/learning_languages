@@ -2,7 +2,7 @@
 
 {% block content_header %}
     {% if user.is_authenticated %}
-    text_test11
+    <p>Тут будет список видео</p>
         <a class="btn btn-ghost-dark me-md-2" href="{% url 'add_video_youtube' %}">VideoYoutubeView</a>
     {% else %}
 

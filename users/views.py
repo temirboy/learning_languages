@@ -16,6 +16,7 @@ class Register(View):
 
     def post(self, request):
         form = UserCreationForm(request.POST)
+
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')

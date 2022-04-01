@@ -1,19 +1,22 @@
 {% extends 'base.html' %}
 
-{% block content_header %}
+{% block title %}
+
+{% endblock %}
+
+{% block content_main %}
     {% if user.is_authenticated %}
-        add_lang
-        <br>
+        text_test6666
+        br
         User {{ user.id }}
         <br>
 
         {% if form.errors %}
             <p>{{ form.errors.error }}</p>
-
         {% endif %}
 
-        <form method="POST" class="post-d">
-            {{ form.name }}
+        <form method="post" class="jkjkl">
+            {{ form.as_p }}
             {% csrf_token %}
             <button type="submit" class="save btn btn-default">Save</button>
         </form>

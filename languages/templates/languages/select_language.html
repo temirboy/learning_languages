@@ -1,16 +1,12 @@
 {% extends 'base.html' %}
 
-{% block content_header %}
+{% block content_main %}
     {% if user.is_authenticated %}
-    text_test34
+        select
+        {{ languages_list.id }}
+        {{ languages_list.name }}
         <br>
-        {% for v1 in languages_list %}
-            {{ v1.id }}
-            {{ v1.name }}
-            {{ v1.user_id }}
-            <br>
 
-        {% endfor %}
 
     {% else %}
 

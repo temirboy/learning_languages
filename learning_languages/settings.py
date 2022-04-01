@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Application definition
 
 AUTH_USER_MODEL = 'users.User'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '../../video_youtube/list_video/'
 LOGOUT_REDIRECT_URL = '/'
 
 INSTALLED_APPS = [
@@ -44,6 +44,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'learning_languages.middleware.LanguageMiddleware'
 ]
 
 ROOT_URLCONF = 'learning_languages.urls'
@@ -87,3 +89,5 @@ STATICFILES_DIRS = [BASE_DIR / 'static', ]
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
