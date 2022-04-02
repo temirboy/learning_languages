@@ -2,10 +2,29 @@
 
 {% block content_main %}
     {% if user.is_authenticated %}
-        <ul class="list-group">
+        <table class="table">
+            <thead class="table-light">
+            <tr>
+                <th scope="col">Название</th>
+                <th scope="col">Изученные слова</th>
+                <th scope="col">Новые слова</th>
+                <th scope="col">Удалить</th>
+            </tr>
+            </thead>
+            <tbody>
             {% for lang in object_list %}
-                <a href="{% url 'list_video' %} class="list-group-item"">{{ lang.name }}</a>
+                <tr>
+                    <td><a href="{% url 'lang' lang.id %}" class="list-group-item">{{ lang.get_name_display }}</a></td>
+                    <td><a href="{% url 'learned_word' %}" class="list-group-item">100</a></td>
+                    <td><a href="{% url 'new_words' %}" class="list-group-item">{{ lang_full_name }}</a></td>
+                    <td><a href="{% url 'delete_language' lang.pk %}" class="list-group-item">Удалить</a></td>
+
+
+                </tr>
             {% endfor %}
-        </ul>
+            </tbody>
+        </table>
+
+
     {% endif %}
 {% endblock %}

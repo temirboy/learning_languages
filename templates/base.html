@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/navbar.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="/static/css/users/base.css">
     <link rel="stylesheet" type="text/css" href="/static/css/users/nav_sidebar.css">
@@ -27,51 +28,44 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                <li class="nav-item dropdown">
+                <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         Языки
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
+                        <a class="dropdown-item" href="{% url 'add_language' %}">Добавить язык</a>
+                        <a class="dropdown-item" href="{% url 'select_language' %}">Удалить язык</a>
                             <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <a class="dropdown-item"  href="{% url 'select_language' %}">Выбрать язык</a>
                     </ul>
-                </li>
+                </div>
 
-                <li class="nav-item dropdown">
+                <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         Видео
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{% url 'add_video_youtube' %}">Добавить видео</a></li>
-                        <li><a class="dropdown-item" href="#">Удалить видео</a></li>
-                        <li>
+                        <a class="dropdown-item" href="{% url 'add_video_youtube' %}">Добавить видео</a>
+                        <a class="dropdown-item" href="#">Удалить видео</a>
                             <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Выбрать видео</a></li>
+                        <a class="dropdown-item" href="#">Выбрать видео</a>
                     </ul>
-                </li>
+                 </div>
 
-                <li class="nav-item dropdown">
+                <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         Слова
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
                             <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <a class="dropdown-item" href="#">Something else here</a>
                     </ul>
-                </li>
+                </div>
 
             </ul>
             <form class="d-flex">
@@ -84,22 +78,22 @@
 
 
 
-                    <li class="nav-item">
+                    <div class="nav-item">
                         <a class="btn btn-ghost-dark me-2" href="{% url 'add_video_youtube' %}">Языки</a>
-                    </li>
+                    </div>
 
-                    <li class="nav-item">
+                    <div class="nav-item">
                         <a class="btn btn-ghost-dark me-2" href="{% url 'add_video_youtube' %}">Видео</a>
-                    </li>
+                    </div>
 
-                    <li class="nav-item">
+                    <div class="nav-item">
                         <a class="btn btn-ghost-dark me-2" href="{% url 'add_video_youtube' %}">Слова</a>
-                    </li>
+                    </div>
 
                     <!-- Log out -->
-                    <li class="nav-item">
+                    <div class="nav-item">
                         <a class="btn btn-outline-success" href="{% url 'logout' %}">Выйти</a>
-                    </li>
+                    </div>
                     <!-- End Log out -->
 
 

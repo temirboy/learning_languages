@@ -34,6 +34,10 @@ INSTALLED_APPS = [
     'users',
     'video_youtube',
     'languages',
+    'new_words',
+    'learned_words',
+
+    'silk'
 ]
 
 MIDDLEWARE = [
@@ -44,6 +48,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'silk.middleware.SilkyMiddleware',
 
     'learning_languages.middleware.LanguageMiddleware'
 ]
