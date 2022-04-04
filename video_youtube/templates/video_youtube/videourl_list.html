@@ -4,7 +4,7 @@
     {% if user.is_authenticated %}
         <ul class="list-group">
             {% for video in object_list %}
-                <a href="{% url 'list_video' %}" class="list-group-item">{{ video.name }}</a>
+                <a href="{% url 'list_videos' %}" class="list-group-item">{{ video.name }}</a>
             {% endfor %}
         </ul>
 

@@ -35,9 +35,8 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'add_language' %}">Добавить язык</a>
-                        <a class="dropdown-item" href="{% url 'select_language' %}">Удалить язык</a>
-                            <hr class="dropdown-divider">
-                        <a class="dropdown-item"  href="{% url 'select_language' %}">Выбрать язык</a>
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item" href="{% url 'list_languages' %}">Список языков</a>
                     </ul>
                 </div>
 
@@ -48,11 +47,10 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'add_video_youtube' %}">Добавить видео</a>
-                        <a class="dropdown-item" href="#">Удалить видео</a>
-                            <hr class="dropdown-divider">
-                        <a class="dropdown-item" href="#">Выбрать видео</a>
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item" href="{% url 'list_videos' %}">Список видео</a>
                     </ul>
-                 </div>
+                </div>
 
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -62,7 +60,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Action</a>
                         <a class="dropdown-item" href="#">Another action</a>
-                            <hr class="dropdown-divider">
+                        <hr class="dropdown-divider">
                         <a class="dropdown-item" href="#">Something else here</a>
                     </ul>
                 </div>
@@ -70,35 +68,12 @@
             </ul>
             <form class="d-flex">
                 {% if user.is_authenticated %}
-                    <!-- Menu
-        <li class="nav-item navbar-nav ms-auto">
-            <a class="btn btn-ghost-dark me-2" href="{% url 'add_video_youtube' %}">Add video</a>
-        </li>
-        End Menu -->
-
-
-
-                    <div class="nav-item">
-                        <a class="btn btn-ghost-dark me-2" href="{% url 'add_video_youtube' %}">Языки</a>
-                    </div>
-
-                    <div class="nav-item">
-                        <a class="btn btn-ghost-dark me-2" href="{% url 'add_video_youtube' %}">Видео</a>
-                    </div>
-
-                    <div class="nav-item">
-                        <a class="btn btn-ghost-dark me-2" href="{% url 'add_video_youtube' %}">Слова</a>
-                    </div>
-
                     <!-- Log out -->
                     <div class="nav-item">
                         <a class="btn btn-outline-success" href="{% url 'logout' %}">Выйти</a>
                     </div>
                     <!-- End Log out -->
-
-
                 {% else %}
-
                     <!-- Log in -->
                     <li class="nav-item">
                         <a class="btn btn-outline-success" href="{% url 'login' %}">Войти</a>

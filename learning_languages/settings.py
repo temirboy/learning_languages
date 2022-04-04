@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Application definition
 
 AUTH_USER_MODEL = 'users.User'
-LOGIN_REDIRECT_URL = '../../video_youtube/list_video/'
+LOGIN_REDIRECT_URL = '../../video_youtube/list_videos/'
 LOGOUT_REDIRECT_URL = '/'
 
 INSTALLED_APPS = [

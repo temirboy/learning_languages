@@ -4,9 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
 from video_youtube.models import VideoUrl
 from .forms import AddVideoYoutube
-from languages.models import Languages
 
-from django.shortcuts import get_object_or_404, get_list_or_404
 
 
 class AddVideoYoutube(LoginRequiredMixin, CreateView):
@@ -17,60 +15,39 @@ class AddVideoYoutube(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user_id = self.request.user.id
-        return super(AddVideoYoutube, self).form_valid(form)
-
-    def form_valid(self, form):
-        form.instance.language_id = self.request.language.id
+        form.instance.language_id = self.request.session.get('language', None)
         return super(AddVideoYoutube, self).form_valid(form)
 
 
-class VideoYoutubeView(ListView):
-    model = VideoUrl
-
-
-def get_1(request, pk: int):
-    vid = get_object_or_404(VideoUrl, id=pk)
-    return render(request, 'video_youtube/videourl_form.html', {'video': vid})
-
-
-def get_2(request, pk: int):
-    vid1 = get_list_or_404(VideoUrl, user_id=pk)
-    return render(request, 'video_youtube/list_video.html', {'video': vid1})
-
-
-def get_3(request):
-    print("get_3")
-    print(request.user.id)
+def video_youtube_list(request):
     language = request.session.get('language', None)
     if language == None:
-        return redirect('../../languages/select_language/')
-    vid1 = get_list_or_404(VideoUrl, user_id=request.user.id, language_id=language)
-    print(vid1)
-    return render(request, 'video_youtube/list_video.html', {'video': vid1})
+        return redirect('../../languages/list_languages/')
+    video_list = list(VideoUrl.objects.filter(user_id=request.user.id, language_id=language))
+    if not video_list:
+        return redirect('../add_video_youtube/')
+    # video_list = get_list_or_404(VideoUrl, user_id=request.user.id, language_id=language)
+    return render(request, 'video_youtube/list_videos.html', {'video_list': video_list})
 
-
-def add_video_youtube(request):
-    if request.method == 'post':
-        form = AddVideoYoutube(request.POST)
-    else:
-        form = AddVideoYoutube()
-    return render(request, 'video_youtube/videourl_form.html', {'form': form})
-
-# def add_video_youtube_view(request):
-#    return render(request, 'videourl_form.html')
-
-
-class VideoYoutubeListView(LoginRequiredMixin, ListView):
-    login_url = reverse_lazy('login')
-    model = VideoUrl
-    template_name = 'video_youtube/videourl_list.html'
-    #quryset = Languages.objects.filter(user_id=self.request.user.id)
-
-    # request.session['username1'] = 'qwe'
-    # request.session.modified = True
-    def get_queryset(self):
-        video_list = VideoUrl.objects.filter(
-            user_id=self.request.user.id,
-            language_id=1
-        )
-        return video_list
+# class VideoYoutubeListView(LoginRequiredMixin, ListView):
+#     login_url = reverse_lazy('login')
+#     model = VideoUrl
+#     template_name = 'video_youtube/list_videos.html'
+#
+#     # quryset = Languages.objects.filter(user_id=self.request.user.id)
+#
+#     # request.session['username1'] = 'qwe'
+#     # request.session.modified = True
+#     def get_queryset(self):
+#         print("VideoYoutubeListView")
+#         print('user - ', self.request.user.id)
+#         language = self.request.session.get('language', None)
+#         print('lang - ', language)
+#         if language == None:
+#             print('none ', language)
+#             return redirect('../../languages/list_languages/')
+#         video_list = VideoUrl.objects.filter(
+#             user_id=self.request.user.id,
+#             language_id=language
+#         )
+#         return video_list

@@ -5,26 +5,18 @@
         <table class="table">
             <thead class="table-light">
             <tr>
-                <th scope="col">Название</th>
-                <th scope="col">Изученные слова</th>
-                <th scope="col">Новые слова</th>
-                <th scope="col">Удалить</th>
+                <th scope="col">Выбрать язык</th>
+                <th scope="col">Удалить язык</th>
             </tr>
             </thead>
             <tbody>
             {% for lang in object_list %}
                 <tr>
                     <td><a href="{% url 'lang' lang.id %}" class="list-group-item">{{ lang.get_name_display }}</a></td>
-                    <td><a href="{% url 'learned_word' %}" class="list-group-item">100</a></td>
-                    <td><a href="{% url 'new_words' %}" class="list-group-item">{{ lang_full_name }}</a></td>
                     <td><a href="{% url 'delete_language' lang.pk %}" class="list-group-item">Удалить</a></td>
-
-
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-
-
     {% endif %}
 {% endblock %}
