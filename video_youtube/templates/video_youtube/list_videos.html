@@ -15,7 +15,7 @@
                 <tr>
                     <td><a href="{% url 'list_videos' %}" class="list-group-item">{{ video.name }}</a></td>
                     <td><a href="{% url 'list_videos' %}" class="list-group-item">{{ video.url }}</a></td>
-                    <td><a href="{% url 'list_videos' %}" class="list-group-item">Удалить</a></td>
+                    <td><a href="{% url 'delete_video_youtube' video.pk %}" class="list-group-item">Удалить</a></td>
                 </tr>
             {% endfor %}
             </tbody>

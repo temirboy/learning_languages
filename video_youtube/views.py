@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DeleteView
 from video_youtube.models import VideoUrl
 from .forms import AddVideoYoutube
 
@@ -28,6 +28,11 @@ def video_youtube_list(request):
         return redirect('../add_video_youtube/')
     # video_list = get_list_or_404(VideoUrl, user_id=request.user.id, language_id=language)
     return render(request, 'video_youtube/list_videos.html', {'video_list': video_list})
+
+class DeleteVideoYoutube(LoginRequiredMixin, DeleteView):
+    login_url = reverse_lazy('login')
+    model = VideoUrl
+    success_url = reverse_lazy('list_videos')
 
 # class VideoYoutubeListView(LoginRequiredMixin, ListView):
 #     login_url = reverse_lazy('login')
