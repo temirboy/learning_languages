@@ -12,11 +12,3 @@ class LanguagesAdmin(admin.ModelAdmin):
     list_display = ['video_url', 'start_time', 'stop_time', 'text_en', 'text_ru_original', 'text_ru_youtube']
 
 
-@admin.register(models.NewWorlds)
-class LanguagesAdmin(admin.ModelAdmin):
-    list_display = ['user', 'language', 'video_time', 'text_en', 'text_ru']
-
-
-@admin.register(models.LearnedWords)
-class LanguagesAdmin(admin.ModelAdmin):
-    list_display = ['user', 'language', 'video_time', 'text_en', 'text_ru', 'phrase', 'video']

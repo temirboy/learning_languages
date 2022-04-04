@@ -5,12 +5,12 @@ from .models import Languages
 from django.conf.global_settings import LANGUAGES
 
 
-class AddLanguage(forms.ModelForm):
-    name = forms.ChoiceField(
-        choices=LANGUAGES,
-        widget=forms.Select(attrs=None, choices=LANGUAGES),
-    )
-
-    class Meta:
-        model = Languages
-        fields = ['name']
+# class AddLanguageForm(forms.ModelForm):
+#     name = forms.ChoiceField(
+#         choices=LANGUAGES,
+#         widget=forms.Select(attrs=None, choices=LANGUAGES),
+#     )
+#
+#     class Meta:
+#         model = Languages
+#         fields = ['name']

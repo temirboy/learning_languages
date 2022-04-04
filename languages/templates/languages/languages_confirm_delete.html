@@ -20,9 +20,9 @@
                         <div id="content-main">
                             <form class="d-flex" method="post">
                                 {% csrf_token %}
-
-                                <div class="form-row">
-                                    {{ form }}
+                                <div class="submit-row">
+                                    <p>Вы уверены, что хотите удалить {{ languages.get_name_display }} ?</p>
+                                    <p>Это нельзя отменить!</p>
                                 </div>
 
                                 <div class="submit-row">

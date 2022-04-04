@@ -1,88 +1,41 @@
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404, get_list_or_404
-from django.urls import reverse_lazy, reverse
-from django.views import View
-from django.views.generic import ListView, CreateView, DeleteView, UpdateView
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-import users.admin
 from languages.models import Languages
-from .forms import AddLanguage
-
-
-def select_language(request):
-    if request.method == 'POST':
-        form = Languages(request.POST)
-    else:
-        form = Languages()
-    return render(request, 'languages/select_language.html', {'form': form})
-
-
-class MyView(LoginRequiredMixin, View):
-    login_url = '/users/login/'
-    redirect_field_name = '/users/login/'
 
 
 class AddLanguage(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('login')
     model = Languages
     fields = ['name']
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('list_languages')
 
     def form_valid(self, form):
         form.instance.user_id = self.request.user.id
         return super(AddLanguage, self).form_valid(form)
 
 
-class UpdateLanguage(LoginRequiredMixin, UpdateView):
-    login_url = reverse_lazy('login')
-    model = Languages
-    fields = ['name']
-
-
 class DeleteLanguage(LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy('login')
     model = Languages
-    success_url = reverse_lazy('language_default')
-
-    def get_object(self):
-        user_id_ = self.kwargs.get("user_id")
-        return get_object_or_404(Languages, user_id=user_id_)
+    success_url = reverse_lazy('list_languages')
 
 
+def get_language(request, pk: int):
+    request.session['language'] = pk
+    request.session.modified = True
+    return redirect('../../video_youtube/list_videos/')
 
-def get_language(reguest, pk: int):
-    languages_list = get_list_or_404(Languages, user_id=pk)
-    return render(reguest, 'languages/select_language.html', {'languages_list': languages_list})
 
-
-class LinksView(ListView):
-    model = Languages
-    template_name = 'languages/select_language.html'
-    context_object_name = 'links'
+class LanguagesListView(LoginRequiredMixin, ListView):
+    login_url = reverse_lazy('login')
+    template_name = 'languages/languages_list.html'
 
     def get_queryset(self):
-        return Languages.objects.filter(user=10)
+        # count_word = Languages.objects.raw('select l.name, count(n.*) from languages l left join new_words n on n.language_id=l.id group by 1')
+        # print(count_word)
+        # https://docs.djangoproject.com/en/4.0/topics/db/aggregation/
+        # https://django.fun/docs/django/ru/4.0/ref/models/querysets/#extra
+        return Languages.objects.filter(user_id=self.request.user.id)
 
-
-def language_default(request):
-    languages_list = Languages.objects.filter(user=request.user)
-    return render(request, 'languages/select_language.html', {'languages_list': languages_list})
-
-
-def my_view(request):
-    username = None
-    if request.user.is_authenticated:
-        username = request.user.id
-        # form = Languages()
-        print(type(username))
-        vid = get_object_or_404(Languages, user_id=username)
-        #var = request.session.get('lang', 'asd')
-        request.session['lang'] = vid.name
-        request.session.modified = True
-        #print(request.POST)
-        # print(form.cleaned_data)
-        #print(username)
-        #print(vid)
-
-    return render(request, 'languages/select_language.html', {'languages_list': vid})

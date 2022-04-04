@@ -23,5 +23,9 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('video_youtube/', include('video_youtube.urls')),
     path('languages/', include('languages.urls')),
+    #path('new_words/', include('new_words.urls')),
+    #path('learned_words/', include('learned_words.urls')),
+
+    path('silk/', include('silk.urls', namespace='silk'))
 
 ]
