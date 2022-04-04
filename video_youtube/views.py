@@ -3,8 +3,6 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView
 from video_youtube.models import VideoUrl
-from .forms import AddVideoYoutube
-
 
 
 class AddVideoYoutube(LoginRequiredMixin, CreateView):
@@ -14,8 +12,13 @@ class AddVideoYoutube(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
-        form.instance.user_id = self.request.user.id
-        form.instance.language_id = self.request.session.get('language', None)
+        instance = form.save(commit=False)
+        instance.user_id = self.request.user.id
+        language = self.request.session.get('language', None)
+        if language == None:
+            return redirect('../../languages/list_languages/')
+        instance.language_id = language
+        instance.save()
         return super(AddVideoYoutube, self).form_valid(form)
 
 
@@ -28,6 +31,7 @@ def video_youtube_list(request):
         return redirect('../add_video_youtube/')
     # video_list = get_list_or_404(VideoUrl, user_id=request.user.id, language_id=language)
     return render(request, 'video_youtube/list_videos.html', {'video_list': video_list})
+
 
 class DeleteVideoYoutube(LoginRequiredMixin, DeleteView):
     login_url = reverse_lazy('login')
