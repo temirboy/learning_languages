@@ -1,19 +1,14 @@
-{% extends 'base.html' %}
-
-{% block title %}
-
-{% endblock %}
+{% extends 'home.html' %}
 
 {% block content_main %}
     {% if user.is_authenticated %}
-
         <body class="login" data-admin-utc-offset="0">
         <!-- Container -->
         <div id="container">
             <!-- Header -->
             <div id="header">
                 <div id="branding">
-                    <h1 id="site-name"><a href="/">Добавить новое видео</a></h1>
+                    <h1 id="site-name"><a href="/">Удалить видео</a></h1>
                 </div>
             </div>
             <!-- END Header -->
@@ -23,19 +18,15 @@
                     <div id="content" class="colM">
 
                         <div id="content-main">
-                            <form method="post">
+                            <form class="d-flex" method="post">
                                 {% csrf_token %}
-
-                                <div class="form-row">
-                                    {{ form.name.label_tag }} {{ form.name }}
-                                </div>
-
-                                <div class="form-row">
-                                    {{ form.url.label_tag }} {{ form.url }}
-                                    <input type="hidden" name="next" value="{{ next }}">
-                                </div>
                                 <div class="submit-row">
-                                    <input type="submit" value="Добавить">
+                                    <p>Вы уверены, что хотите удалить {{ videourl.name }} ?</p>
+                                    <p>Это нельзя отменить!</p>
+                                </div>
+
+                                <div class="submit-row">
+                                    <input type="submit" value="Удалить">
                                 </div>
 
                             </form>
@@ -49,6 +40,5 @@
         </div>
         <!-- END Container -->
         </body>
-
     {% endif %}
 {% endblock %}
