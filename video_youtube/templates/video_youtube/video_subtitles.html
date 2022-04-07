@@ -2,7 +2,13 @@
 
 {% block content_main %}
     {% if user.is_authenticated %}
-        {{ video_subtitles.name }}
-        {{ video_subtitles.url }}
+        {{ videourl.name }}
+        {{ videourl.url }}
+        <br>
+        <br>
+        {{ latest_en }}
+        <br>
+        {{ latest_ru }}
+
     {% endif %}
 {% endblock %}

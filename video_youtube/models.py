@@ -12,6 +12,9 @@ class VideoUrl(models.Model):
     name = models.CharField('Название видео:', max_length=100)
     url = models.URLField('Ссылка на youtube видео:')
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         db_table = 'video_url'
 
